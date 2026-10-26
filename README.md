@@ -118,21 +118,27 @@ supported versions.
 
 # Repository layout
 
-| Variable | Purpose | Notes |
-|---|---|---|
-| `OPENAI_API_KEY` | OpenAI API authentication | Required by current Compose configuration |
-| `RI_API_TOKEN` | Platform/API token | Required by current Compose configuration; keep private |
-| `OPENAI_EMBEDDING_MODEL` | Embedding model override | Retriever default: `text-embedding-3-small` |
-| `QDRANT_URL` | Qdrant endpoint | Use the Compose service name from containers |
-| `QDRANT_API_KEY` | Optional Qdrant authentication | Needed only if Qdrant requires it |
-| `QDRANT_COLLECTION` | Qdrant collection | Retriever default: `ri_knowledge` |
-| `REDIS_URL` | Redis connection URL | Compose default: `redis://redis:6379/0` |
-| `RAG_RETRIEVAL_CACHE_ENABLED` | Enable retrieval cache | Compose default is `0` unless overridden |
-| `RAG_CACHE_VERSION` | Cache namespace/version | Default: `v1` |
-| `RAG_CACHE_TTL_SECONDS` | Cache entry lifetime in seconds | Default: `300` |
-| `RAG_CACHE_SCOPE` | Cache scope | Default: `shared`; review tenant-isolation needs |
-| `CORS_ALLOW_ORIGINS` | Allowed browser origins | Allow only required origins |
-
+.
+├── .github/workflows/
+│   ├── ci.yml
+│   └── sync.yml
+├── scripts/
+│   ├── answering/       # Answer generation, claims, evidence and citations
+│   ├── evaluation/      # Evaluation cases and runners
+│   ├── retrieval/       # Chunking, embeddings, retrieval, Qdrant and cache
+│   ├── safety/          # Input/output safety and grounding checks
+│   ├── semantic/        # Semantic support and judgment components
+│   ├── sync/            # Knowledge-base synchronization
+│   ├── api.py           # FastAPI application and routes
+│   ├── ingest.py        # Ingestion entry point
+│   └── validate_manifest.py
+├── tests/
+├── docker-compose.yml
+├── .env.example
+├── requirements.txt
+├── requirements-dev.txt
+├── pytest.ini
+└── README.md
 
 The current checkout may differ; use the repository tree as the source
 of truth.
